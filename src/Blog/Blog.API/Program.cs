@@ -16,9 +16,6 @@ builder.Services.AddDbContext<PgSqlContext>(options => options.UseNpgsql(builder
 
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
-builder.Services.AddExceptionHandler<ApplicationExceptionHandler>();
-builder.Services.AddProblemDetails();
-
 var app = builder.Build();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 

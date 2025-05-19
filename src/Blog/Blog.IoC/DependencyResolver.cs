@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Blog.Application.Identity.Auth;
 using Blog.Application.Identity.Users.Create;
 using Blog.Common.Validation;
 using Blog.IoC.ModuleInitializers;
@@ -25,5 +26,8 @@ public static class DependencyResolver
 
         builder.Services.AddTransient<IValidator<CreateUserCommand>, CreateUserCommandValidator>();
         builder.Services.AddTransient<IRequestHandler<CreateUserCommand, CreateUserResult>, CreateUserCommandHandler>();
+
+        builder.Services.AddTransient<IValidator<AuthenticateUserCommand>, AuthenticateUserCommandValidator>();
+        builder.Services.AddTransient<IRequestHandler<AuthenticateUserCommand, AuthenticateUserResult>, AuthenticateUserComandHandler>();
     }
 }
