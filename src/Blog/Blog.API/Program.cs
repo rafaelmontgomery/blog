@@ -1,22 +1,28 @@
+using Blog.API.Middleware;
+using Blog.Common.Security;
 using Blog.Infra.Contexts;
+using Blog.IoC;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+builder.RegisterDependencies();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<PgSqlContext>(options =>
-         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-     );
+builder.Services.AddDbContext<PgSqlContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
+builder.Services.AddExceptionHandler<ApplicationExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
+app.UseMiddleware<ValidationExceptionMiddleware>();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

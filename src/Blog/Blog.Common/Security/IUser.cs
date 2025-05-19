@@ -1,4 +1,4 @@
-﻿namespace Blog.Domain.Interfaces;
+﻿namespace Blog.Common.Security;
 public interface IUser
 {
     public string Id { get; }
