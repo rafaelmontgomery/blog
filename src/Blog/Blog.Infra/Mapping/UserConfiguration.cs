@@ -9,10 +9,20 @@ public class UserConfiguration : BaseEntityTypeConfiguration<User>
     {
         base.Configure(builder);
 
-        builder.Property(u => u.Username).IsRequired().HasMaxLength(50);
-        builder.Property(u => u.Password).IsRequired().HasMaxLength(100);
-        builder.Property(u => u.Email).IsRequired().HasMaxLength(100);
-        builder.Property(u => u.Phone).HasMaxLength(20);
+        builder.Property(u => u.Username)
+            .IsRequired()
+            .HasMaxLength(50);
+
+        builder.Property(u => u.Password)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(u => u.Email)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(u => u.Phone)
+            .HasMaxLength(20);
 
         builder.Property(u => u.Role)
             .HasConversion<string>()

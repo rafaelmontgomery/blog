@@ -6,6 +6,7 @@ namespace Blog.Infra.Contexts;
 public class PgSqlContext(DbContextOptions<PgSqlContext> options) : DbContext(options)
 {
     public required DbSet<User> Users { get; set; }
+    public required DbSet<BlogPost> BlogPosts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

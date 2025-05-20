@@ -15,12 +15,9 @@ public class User : BaseEntity, IUser
 
     public UserRole Role { get; private set; }
 
-    public DateTime CreatedAt { get; private set; }
-
-    public DateTime? UpdatedAt { get; private set; }
+    public ICollection<BlogPost> BlogPosts { get; set; } = [];
 
     string IUser.Id => Id.ToString();
-
     string IUser.Username => Username;
     string IUser.Role => Role.ToString();
 
@@ -31,7 +28,6 @@ public class User : BaseEntity, IUser
     }
 
     public void SetPassword(string password) => Password = password;
-    public void SetUpdatedAt() => UpdatedAt = DateTime.UtcNow;
 
     private User() { }
 

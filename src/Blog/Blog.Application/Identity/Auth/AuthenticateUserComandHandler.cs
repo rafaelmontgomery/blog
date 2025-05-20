@@ -3,10 +3,8 @@ using Blog.Domain.Interfaces.Repositories;
 using MediatR;
 
 namespace Blog.Application.Identity.Auth;
-public class AuthenticateUserComandHandler(
-      IUserRepository userRepository,
-      IPasswordHasher passwordHasher,
-      IJwtTokenGenerator jwtTokenGenerator) : IRequestHandler<AuthenticateUserCommand, AuthenticateUserResult>
+public class AuthenticateUserComandHandler(IUserRepository userRepository, IPasswordHasher passwordHasher, IJwtTokenGenerator jwtTokenGenerator) :
+    IRequestHandler<AuthenticateUserCommand, AuthenticateUserResult>
 {
     public async Task<AuthenticateUserResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
