@@ -2,8 +2,12 @@
 using Blog.API.Controllers.Abstractions;
 using Blog.Application.Blog.BlogPosts.Create;
 using Blog.Application.Blog.BlogPosts.Delete;
+using Blog.Application.Blog.BlogPosts.Get.GetPaged;
+using Blog.Application.Blog.BlogPosts.Get.Responses;
 using Blog.Application.Blog.BlogPosts.Update;
+using Blog.Domain.Params;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.API.Controllers.Blog;
@@ -73,6 +77,27 @@ public class BlogPostsController(ISender sender) : ApiController
             Success = true,
             Message = "Blog post deleted successfully",
             Data = result
+        });
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(PaginatedResponse<BlobPostResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ListCarts([FromQuery] BlogPostQueryParams request, CancellationToken cancellationToken)
+    {
+        var list = await sender.Send(new GetPagedBlogPostsQuery(request), cancellationToken);
+
+        var response = BlobPostResponse.Create(list);
+
+        return Ok(new PaginatedResponse<BlobPostResponse>
+        {
+            Success = true,
+            Message = "User retrieved successfully",
+            Data = response,
+            CurrentPage = list.CurrentPage,
+            TotalCount = list.TotalCount,
+            TotalPages = list.TotalPages
         });
     }
 }

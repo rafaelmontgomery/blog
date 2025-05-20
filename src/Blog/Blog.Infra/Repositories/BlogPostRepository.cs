@@ -1,5 +1,6 @@
 ﻿using Blog.Domain.Entities;
 using Blog.Domain.Interfaces.Repositories;
+using Blog.Domain.Params;
 using Blog.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,4 +33,7 @@ public class BlogPostRepository(PgSqlContext context) : IBlogPostRepository
         await context.SaveChangesAsync(cancellationToken);
         return blogPost;
     }
+
+    public IQueryable<BlogPost> GetQuery(BlogPostQueryParams queryParams) 
+        => context.BlogPosts.AsQueryable().Include(p => p.Author);
 }

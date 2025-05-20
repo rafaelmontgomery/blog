@@ -1,10 +1,13 @@
 ﻿using System.Reflection;
 using Blog.Application.Blog.BlogPosts.Create;
 using Blog.Application.Blog.BlogPosts.Delete;
+using Blog.Application.Blog.BlogPosts.Get.GetPaged;
 using Blog.Application.Blog.BlogPosts.Update;
+using Blog.Application.Common;
 using Blog.Application.Identity.Auth;
 using Blog.Application.Identity.Users.Create;
 using Blog.Common.Validation;
+using Blog.Domain.Entities;
 using Blog.IoC.ModuleInitializers;
 using FluentValidation;
 using MediatR;
@@ -41,5 +44,7 @@ public static class DependencyResolver
 
         builder.Services.AddTransient<IValidator<DeleteBlogPostCommand>, DeleteBlogPostCommandValidator>();
         builder.Services.AddTransient<IRequestHandler<DeleteBlogPostCommand, DeleteBlogPostResult>, DeleteBlogPostCommandHandler>();
+
+        builder.Services.AddTransient<IRequestHandler<GetPagedBlogPostsQuery, PaginatedList<BlogPost>>, GetPagedBlogPostsQueryHandler>();
     }
 }
