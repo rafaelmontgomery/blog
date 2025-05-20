@@ -21,7 +21,10 @@ public class BlogPostRepository(PgSqlContext context) : IBlogPostRepository
     }
 
     public async Task<BlogPost?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-            => await context.BlogPosts.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            => await context.BlogPosts.FirstOrDefaultAsync(post => post.Id == id, cancellationToken);
+
+    public async Task<BlogPost?> GetByAuthorAndIdAsync(Guid id, Guid authorId, CancellationToken cancellationToken = default)
+        => await context.BlogPosts.FirstOrDefaultAsync(post => post.Id == id && post.AuthorId == authorId, cancellationToken);
 
     public async Task<BlogPost> UpdateAsync(BlogPost blogPost, CancellationToken cancellationToken = default)
     {

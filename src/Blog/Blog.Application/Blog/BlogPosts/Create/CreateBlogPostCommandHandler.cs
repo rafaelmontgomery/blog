@@ -9,7 +9,7 @@ public class CreateBlogPostCommandHandler(IBlogPostRepository blogPostRepository
     {
         var blogPost = BlogPost.Create(request.Title, request.Content, request.AuthorId);
 
-        var createdBlogPost = await blogPostRepository.CreateAsync(blogPost);
+        var createdBlogPost = await blogPostRepository.CreateAsync(blogPost, cancellationToken);
         var result = new CreateBlogPostResult(createdBlogPost.Id);
         return result;
     }
