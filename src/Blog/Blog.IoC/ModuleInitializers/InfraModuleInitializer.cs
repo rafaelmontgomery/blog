@@ -12,5 +12,6 @@ public class InfraModuleInitializer : IModuleInitializer
     {
         builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<PgSqlContext>());
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
     }
 }

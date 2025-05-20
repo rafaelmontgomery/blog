@@ -1,10 +1,5 @@
 ﻿namespace Blog.Application.Identity.Users.Create;
-public class CreateUserResult
+public class CreateUserResult(Guid id)
 {
-    public CreateUserResult(Guid id)
-    {
-        Id = id;
-    }
-
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } = id;
 }
