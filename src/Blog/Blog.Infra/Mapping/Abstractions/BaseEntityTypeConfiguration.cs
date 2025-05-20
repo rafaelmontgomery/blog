@@ -12,5 +12,6 @@ public abstract class BaseEntityTypeConfiguration<T> : IEntityTypeConfiguration<
     {
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
+        builder.HasQueryFilter(u => u.DeletedAt == null);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Blog.API.Common;
 using Blog.API.Controllers.Abstractions;
 using Blog.Application.Blog.BlogPosts.Create;
+using Blog.Application.Blog.BlogPosts.Delete;
 using Blog.Application.Blog.BlogPosts.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,25 @@ public class BlogPostsController(ISender sender) : ApiController
         {
             Success = true,
             Message = "Blog post updated successfully",
+            Data = result
+        });
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(typeof(ApiResponseWithData<DeleteBlogPostRequest>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Delete([FromBody] DeleteBlogPostRequest request, CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var command = request.ToCommand();
+
+        var result = await sender.Send(command, cancellationToken);
+
+        return Ok(new ApiResponseWithData<DeleteBlogPostResult>
+        {
+            Success = true,
+            Message = "Blog post deleted successfully",
             Data = result
         });
     }

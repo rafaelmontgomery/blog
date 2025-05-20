@@ -1,5 +1,5 @@
 ﻿namespace Blog.Domain.Interfaces;
-internal interface ISoftDeletable
+public interface ISoftDeletable
 {
     public DateTime? DeletedAt { get; protected set; }
     public Guid? DeletedBy { get; protected set; }

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Blog.Application.Blog.BlogPosts.Create;
+using Blog.Application.Blog.BlogPosts.Delete;
 using Blog.Application.Blog.BlogPosts.Update;
 using Blog.Application.Identity.Auth;
 using Blog.Application.Identity.Users.Create;
@@ -37,5 +38,8 @@ public static class DependencyResolver
 
         builder.Services.AddTransient<IValidator<UpdateBlogPostCommand>, UpdateBlogPostCommandValidator>();
         builder.Services.AddTransient<IRequestHandler<UpdateBlogPostCommand, UpdateBlogPostResult>, UpdateBlogPostCommandHandler>();
+
+        builder.Services.AddTransient<IValidator<DeleteBlogPostCommand>, DeleteBlogPostCommandValidator>();
+        builder.Services.AddTransient<IRequestHandler<DeleteBlogPostCommand, DeleteBlogPostResult>, DeleteBlogPostCommandHandler>();
     }
 }
