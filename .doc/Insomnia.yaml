@@ -1,0 +1,310 @@
+type: collection.insomnia.rest/5.0
+name: BlogAPI
+meta:
+  id: wrk_caf38d7d2a844172934755c9be518ff6
+  created: 1747612144999
+  modified: 1747612144999
+collection:
+  - name: User
+    meta:
+      id: fld_29fd249428e54341a5ef598b924fa44b
+      created: 1747612278534
+      modified: 1747612278534
+      sortKey: -1747612278534
+    children:
+      - url: "{{ _.baseUrl }}users"
+        name: Create
+        meta:
+          id: req_919d4c93983b4206840ed7eb2ef37575
+          created: 1747612281822
+          modified: 1747623223953
+          isPrivate: false
+          sortKey: -1747612281822
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "rafael_montgomery",
+              "password": "Teste123@",
+              "phone": "19992287298",
+              "email": "rafaelmontgomery@hotmail.com",
+              "role": 3
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3NjIzMTQ0LCJleHAiOjE3NDc2NTE5NDQsImlhdCI6MTc0NzYyMzE0NH0.FuJGIv2NbPDUKv9FXNTt89aB735B_DJc6lVP20pEpvQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}auth"
+        name: Auth
+        meta:
+          id: req_fc51119bca4f43cca47f31492a95e66b
+          created: 1747622951761
+          modified: 1747623088159
+          isPrivate: false
+          sortKey: -1747622951761
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "rafaelmontgomery@gmail.com",
+              "password": "Teste@123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: BlogPost
+    meta:
+      id: fld_aa2e2000eeaf4f74a88d30796f616307
+      created: 1747702961841
+      modified: 1747784510817
+      sortKey: -1747702961841
+    children:
+      - name: WebSockets
+        meta:
+          id: fld_2900a656a81a426d8febb907f23809dd
+          created: 1747791435013
+          modified: 1747791435013
+          sortKey: -1747791435013
+        children:
+          - url: wss://localhost:7224/ws
+            name: WebSocket
+            meta:
+              id: ws-req_10d2eb54881c4917937a239a46aff4aa
+              created: 1747784617757
+              modified: 1747791438686
+              sortKey: -1747791438629
+            settings:
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+            authentication:
+              type: none
+            headers:
+              - id: pair_8b399f9e294c4afa9ff5a6bcc84299ff
+                name: token
+                value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3Nzg0NDg0LCJleHAiOjE3NDc4MTMyODQsImlhdCI6MTc0Nzc4NDQ4NH0.oKDUdccOpcv1IJG6PRY4PdNAjzaux2EMl7NYbLl-eK0
+                disabled: false
+          - url: wss://localhost:7224/ws
+            name: WebSocket2
+            meta:
+              id: ws-req_5b5041260ed541ce8beb063368102302
+              created: 1747791421735
+              modified: 1747791440920
+              sortKey: -1747791438529
+            settings:
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+            authentication:
+              type: none
+            headers:
+              - id: pair_8b399f9e294c4afa9ff5a6bcc84299ff
+                name: token
+                value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3Nzg0NDg0LCJleHAiOjE3NDc4MTMyODQsImlhdCI6MTc0Nzc4NDQ4NH0.oKDUdccOpcv1IJG6PRY4PdNAjzaux2EMl7NYbLl-eK0
+                disabled: false
+          - url: wss://localhost:7224/ws
+            name: WebSocket3
+            meta:
+              id: ws-req_b82afb008a3e41f6ab9cddd36691b1f6
+              created: 1747791448826
+              modified: 1747791448826
+              sortKey: -1747791438479
+            settings:
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+            authentication:
+              type: none
+            headers:
+              - id: pair_8b399f9e294c4afa9ff5a6bcc84299ff
+                name: token
+                value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3Nzg0NDg0LCJleHAiOjE3NDc4MTMyODQsImlhdCI6MTc0Nzc4NDQ4NH0.oKDUdccOpcv1IJG6PRY4PdNAjzaux2EMl7NYbLl-eK0
+                disabled: false
+      - url: "{{ _.baseUrl }}blogposts"
+        name: Create
+        meta:
+          id: req_c8298b0f2c164c2c96b6ef9c6afe8fb1
+          created: 1747702965543
+          modified: 1747791801037
+          isPrivate: false
+          sortKey: -1747702965543
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "title": "Criando minha ultima postagem",
+              "content": "Minha ultima postagem :)"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}blogposts"
+        name: Update
+        meta:
+          id: req_c449f9e927294deaaa0fe67fdf8664e5
+          created: 1747705270126
+          modified: 1747705371757
+          isPrivate: false
+          sortKey: -1747662958652
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id":"afabff0d-4b87-4588-9db5-91a521aee066",
+              "title": "Editando minha segunda postagem",
+              "content": "Editando Minha segunda postagem :)"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3NzAzMTA5LCJleHAiOjE3NDc3MzE5MDksImlhdCI6MTc0NzcwMzEwOX0.8M-8ewgSYgdlfMrJq7jYu2kbBx7ZLHguxoDRX9PivPE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}blogposts"
+        name: Delete
+        meta:
+          id: req_fe1ae476e46240f2af7aea4b76a04797
+          created: 1747707694526
+          modified: 1747710196607
+          isPrivate: false
+          sortKey: -1747642955206.5
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id":"873ffa4a-725f-4293-a71b-1fa0c602ada0"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3NzAzMTA5LCJleHAiOjE3NDc3MzE5MDksImlhdCI6MTc0NzcwMzEwOX0.8M-8ewgSYgdlfMrJq7jYu2kbBx7ZLHguxoDRX9PivPE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}blogposts"
+        name: GetPaged
+        meta:
+          id: req_13e090fb43e24856815f1a6e5bd676aa
+          created: 1747713528101
+          modified: 1747791766806
+          isPrivate: false
+          sortKey: -1747682962097.5
+        method: GET
+        parameters:
+          - id: pair_5378195343bf47f195eb283ea7aabfca
+            name: CurrentPage
+            value: "0"
+            disabled: false
+          - id: pair_79000b3d46c14ada96c901689b942645
+            name: PageSize
+            value: "3"
+            disabled: false
+          - id: pair_2eee6abc3f784d95897e5ed7b598ade1
+            disabled: false
+          - id: pair_b702474ae5a84cd6a8ee891524673177
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3NzAzMTA5LCJleHAiOjE3NDc3MzE5MDksImlhdCI6MTc0NzcwMzEwOX0.8M-8ewgSYgdlfMrJq7jYu2kbBx7ZLHguxoDRX9PivPE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkZmQ3ZjQ2My1hM2Q0LTRhNzEtODJmNC1iN2UzZmJmZGFlOWQiLCJ1bmlxdWVfbmFtZSI6InJhZmFlbC5tb250Z29tZXJ5Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzQ3Nzg0NDg0LCJleHAiOjE3NDc4MTMyODQsImlhdCI6MTc0Nzc4NDQ4NH0.oKDUdccOpcv1IJG6PRY4PdNAjzaux2EMl7NYbLl-eK0
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_dd310e1056a325bcd2fb326cbd5e22cb485e65f8
+    created: 1747612145008
+    modified: 1747612145008
+environments:
+  name: Base Environment
+  meta:
+    id: env_dd310e1056a325bcd2fb326cbd5e22cb485e65f8
+    created: 1747612145005
+    modified: 1747612460801
+    isPrivate: false
+  data:
+    baseUrl: https://localhost:7224/api/
+  subEnvironments:
+    - name: OpenAPI env example.com
+      meta:
+        id: env_2a79e7cf29b747a4a91cd41229aff224
+        created: 1747612194721
+        modified: 1747612194721
+        isPrivate: false
+        sortKey: 1747612194721
+      data:
+        scheme: http
+        host: example.com
