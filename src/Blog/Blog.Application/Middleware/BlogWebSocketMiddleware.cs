@@ -1,9 +1,8 @@
-﻿namespace Blog.API.Middleware;
-
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
+namespace Blog.Application.Middleware;
 public class BlogWebSocketMiddleware(RequestDelegate next)
 {
     private static readonly List<WebSocket> _sockets = [];
@@ -33,15 +32,21 @@ public class BlogWebSocketMiddleware(RequestDelegate next)
         while (socket.State == WebSocketState.Open)
         {
             WebSocketReceiveResult result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
             if (result.MessageType == WebSocketMessageType.Close)
             {
                 _sockets.Remove(socket);
                 await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closed", CancellationToken.None);
+                return;
             }
+
+            string messageText = Encoding.UTF8.GetString(buffer, 0, result.Count);
+            Console.WriteLine("Message received: {0}", messageText);
+
         }
     }
 
-    public static async Task BroadcastMessage(string message)
+    public static async Task NotifyUsers(string message)
     {
         var messageBytes = Encoding.UTF8.GetBytes(message);
 

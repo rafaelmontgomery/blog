@@ -29,9 +29,7 @@ public class BlogPostsController(ISender sender) : ApiController
         var command = request.ToCommand(userId);
 
         var result = await sender.Send(command, cancellationToken);
-
-        await BlogWebSocketMiddleware.BroadcastMessage("Nova postagem publicada!");
-
+       
         return Created(string.Empty, new ApiResponseWithData<CreateBlogPostResult>
         {
             Success = true,

@@ -1,4 +1,5 @@
 using Blog.API.Middleware;
+using Blog.Application.Middleware;
 using Blog.Common.Security;
 using Blog.IoC;
 using Microsoft.AspNetCore.WebSockets;
@@ -13,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
-builder.Services.AddWebSockets(x=> x.KeepAliveInterval = TimeSpan.FromMinutes(2));
+builder.Services.AddWebSockets(x => x.KeepAliveInterval = TimeSpan.FromMinutes(2));
 
 var app = builder.Build();
 
