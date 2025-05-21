@@ -1,5 +1,6 @@
 ﻿using Blog.API.Common;
 using Blog.API.Controllers.Abstractions;
+using Blog.API.Middleware;
 using Blog.Application.Blog.BlogPosts.Create;
 using Blog.Application.Blog.BlogPosts.Delete;
 using Blog.Application.Blog.BlogPosts.Get.GetPaged;
@@ -28,6 +29,8 @@ public class BlogPostsController(ISender sender) : ApiController
         var command = request.ToCommand(userId);
 
         var result = await sender.Send(command, cancellationToken);
+
+        await BlogWebSocketMiddleware.BroadcastMessage("Nova postagem publicada!");
 
         return Created(string.Empty, new ApiResponseWithData<CreateBlogPostResult>
         {
